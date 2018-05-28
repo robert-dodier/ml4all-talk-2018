@@ -63,83 +63,101 @@ class: center, middle
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-0.6*50 + 0.4*(-100)
-0.6*25 + 0.4*(-40)
-0.6*65 + 0.4*(-90)
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> 0.6*50 + 0.4*(-100)
+-10.0
+>>> 0.6*25 + 0.4*(-40)
+-1.0
+>>> 0.6*65 + 0.4*(-90)
+3.0
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-zip(p,u[0])
-zip(p,u[1])
-zip(p,u[2])
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> zip(p,u[0])
+[(0.6, 50), (0.4, -100)]
+>>> zip(p,u[1])
+[(0.6, 25), (0.4, -40)]
+>>> zip(p,u[2])
+[(0.6, 65), (0.4, -90)]
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-[p1*u1 for p1,u1 in zip(p,u[0])]
-[p1*u1 for p1,u1 in zip(p,u[1])]
-[p1*u1 for p1,u1 in zip(p,u[2])]
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> [p1*u1 for p1,u1 in zip(p,u[0])]
+[30.0, -40.0]
+>>> [p1*u1 for p1,u1 in zip(p,u[1])]
+[15.0, -16.0]
+>>> [p1*u1 for p1,u1 in zip(p,u[2])]
+[39.0, -36.0]
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-sum(p1*u1 for p1,u1 in zip(p,u[0]))
-sum(p1*u1 for p1,u1 in zip(p,u[1]))
-sum(p1*u1 for p1,u1 in zip(p,u[2]))
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> sum(p1*u1 for p1,u1 in zip(p,u[0]))
+-10.0
+>>> sum(p1*u1 for p1,u1 in zip(p,u[1]))
+-1.0
+>>> sum(p1*u1 for p1,u1 in zip(p,u[2]))
+3.0
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
-eu
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+>>> eu
+[-10.0, -1.0, 3.0]
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
-max(eu)
-eu.index(max(eu))
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+>>> eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+>>> max(eu)
+3.0
+>>> eu.index(max(eu))
+2
 ```
 ---
 # Typical expected utility calculation
 
 ```python
-p = (0.6, 0.4)
-u = ((50, -100),
-     (25, -40),
-     (65, -90))
-eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
-eu.index(max(eu))
+>>> p = (0.6, 0.4)    # Probability distribution over states
+>>> u = ((50, -100),  # Utility for each (action, state) pair
+...      (25, -40),
+...      (65, -90))
+>>> # Expected utility calculation
+... eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+>>> # Find action which has greatest expected utility
+... eu.index(max(eu))
+2
 ```
 ---
 # More general decision problems
