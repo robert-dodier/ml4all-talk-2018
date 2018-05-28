@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting from Machine Learning Outputs to Decisions</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-slide-content h1, h2, h3 { font-size: 1.6em; }
+      .remark-slide-content { font-size: 1.8em; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Getting from Machine Learning Outputs to Decisions
+## Robert Dodier
+## ML4ALL 2018
+
+---
+# Introduction
+
+---
+# Elements of a decision problem
+
+---
+# Examples of decision problems
+
+---
+# What is a decision theory?
+
+---
+# Expected-utility decision theory
+
+---
+# Putting expected utility into action
+
+---
+# Typical expected utility calculation
+
+```python
+>>> p = (0.6, 0.4)    # Probability distribution over states
+>>> u = ((50, -100),  # Utility for each (action, state) pair
+...      (25, -40),
+...      (65, -90))
+>>> # Expected utility calculation
+... eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+>>> # Find action which has greatest expected utility
+... eu.index(max(eu))
+2
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+0.6*50 + 0.4*(-100)
+0.6*25 + 0.4*(-40)
+0.6*65 + 0.4*(-90)
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+zip(p,u[0])
+zip(p,u[1])
+zip(p,u[2])
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+[p1*u1 for p1,u1 in zip(p,u[0])]
+[p1*u1 for p1,u1 in zip(p,u[1])]
+[p1*u1 for p1,u1 in zip(p,u[2])]
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+sum(p1*u1 for p1,u1 in zip(p,u[0]))
+sum(p1*u1 for p1,u1 in zip(p,u[1]))
+sum(p1*u1 for p1,u1 in zip(p,u[2]))
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+eu
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+max(eu)
+eu.index(max(eu))
+```
+---
+# Typical expected utility calculation
+
+```python
+p = (0.6, 0.4)
+u = ((50, -100),
+     (25, -40),
+     (65, -90))
+eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+eu.index(max(eu))
+```
+---
+# More general decision problems
+--
+ * What if there are more actions to consider?
+--
+  * Additional rows in utility matrix `u`
+--
+ * What if there are more than two discrete states?
+--
+  * Additional columns in `u` and additional elements in probability tuple `p`
+--
+ * What if states are continuous instead of discrete?
+--
+  * Expected utility calculation is an integral instead of a summation
+  * Need to represent probability distribution as continuous function
+--
+ * What if actions are continuous instead of discrete?
+--
+  * Need to maximize expected utility over continuous variable
+
+---
+# Summary and points of departure
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+
+      // Setup MathJax
+      MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [['$','$'], ['\\(','\\)']],
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Queue(function() {
+          $(MathJax.Hub.getAllJax()).map(function(index, elem) {
+              return(elem.SourceElement());
+          }).parent().addClass('has-jax');
+      });
+
+      MathJax.Hub.Configured();
+    </script>
+  </body>
+</html>
