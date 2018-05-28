@@ -32,11 +32,67 @@ class: center, middle
 ---
 # Introduction
 
----
-# Elements of a decision problem
+ * Your ML delivers tons and tons of predictions and estimates!
+
+ * What to do with all those numbers?
 
 ---
 # Examples of decision problems
+
+ * Given history of purchases, what ads to show?
+
+--
+
+ * Given personal data and service history, what rebate or offer to give to someone to make them stay on service?
+
+--
+
+ * Given demographic data and test data, do we need to order another medical test?
+
+--
+
+ * Given history and geology, how should we prepare for next earthquake?
+
+---
+# Elements of a decision problem
+
+ * Decision = select from alternative actions
+
+--
+
+ * ... on the basis of beliefs and preferences
+
+--
+
+ * Separation of beliefs and preferences greatly simplifies the problem
+
+--
+
+  * Beliefs = what we infer from facts
+
+  * Preferences = what we like, expressed as values, payoffs, or costs and benefits
+
+---
+# Elements of a decision problem
+
+ * In a ML context, beliefs are typically calculated by the ML model
+
+--
+
+ * Preferences can often be handled as a post-processing step
+
+  * Handling preferences often much simpler computationally than beliefs!
+--
+
+ * Preferences often express important business logic
+
+  * Evaluate outcome of decision from point of view of business requirements
+
+--
+
+ * In addition, constraints on possible actions also express business logic
+ 
+  * Set of possible actions determined from business requirements
 
 ---
 # What is a decision theory?
@@ -52,12 +108,16 @@ class: center, middle
 
 --
  * Logistic regression
+
 --
  * Neural network with logistic output
+
 --
  * Neural network with softmax output
+
 --
  * Naive Bayes
+
 --
  * Tree-structured models
 
@@ -66,12 +126,17 @@ class: center, middle
 
 --
  * Any regression model with additive noise
+
 --
   * Model output gives conditional mean
+
   * Noise model gives conditional distribution around mean
+
 --
  * Linear regression
+
  * Neural network regression
+
 ---
 # Non-probabilistic outputs: SVM
 
@@ -256,7 +321,42 @@ class: center, middle
   * Need to maximize expected utility over continuous variable
 
 ---
-# Summary and points of departure
+# Summary: Getting from ML outputs to decisions
+
+ * Separate belief and preference in analysis of decision problem
+
+ * Beliefs = outputs from ML models
+
+ * Preferences (utility function) express important business requirements
+
+  * Same for constraints on the set of possible actions
+
+ * Expected-utility decision theory: rank actions by expected utility, pick one that floats to top
+
+ * This expected utility calculation often a simpler postprocessing step
+
+---
+# Points of departure
+
+ * Try to separate beliefs from preferences in your business problem
+
+  * Bring business requirements into the picture via preferences
+
+  * ... and via constraints on actions
+
+ * Be prepared to iterate on preferences and constraints
+
+  * These are often among the most malleable elements of the problem
+
+  * Assessments of preferences often evolve as more is learned about the business
+
+   * Formal statement of preferences is a great way to get input from stakeholders
+
+   * ... while insulating ML pipeline from changes
+
+  * But! Expected utility is the tail that wags the dog
+
+   * Output of ML pipeline is determined by requirements of decision analysis
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
