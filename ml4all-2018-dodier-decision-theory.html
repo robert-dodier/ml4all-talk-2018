@@ -67,10 +67,19 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> 0.6*50 + 0.4*(-100)
 -10.0
+```
+--
+```python
 >>> 0.6*25 + 0.4*(-40)
 -1.0
+```
+--
+```python
 >>> 0.6*65 + 0.4*(-90)
 3.0
 ```
@@ -82,10 +91,19 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> zip(p,u[0])
 [(0.6, 50), (0.4, -100)]
+```
+--
+```python
 >>> zip(p,u[1])
 [(0.6, 25), (0.4, -40)]
+```
+--
+```python
 >>> zip(p,u[2])
 [(0.6, 65), (0.4, -90)]
 ```
@@ -97,10 +115,19 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> [p1*u1 for p1,u1 in zip(p,u[0])]
 [30.0, -40.0]
+```
+--
+```python
 >>> [p1*u1 for p1,u1 in zip(p,u[1])]
 [15.0, -16.0]
+```
+--
+```python
 >>> [p1*u1 for p1,u1 in zip(p,u[2])]
 [39.0, -36.0]
 ```
@@ -112,10 +139,19 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> sum(p1*u1 for p1,u1 in zip(p,u[0]))
 -10.0
+```
+--
+```python
 >>> sum(p1*u1 for p1,u1 in zip(p,u[1]))
 -1.0
+```
+--
+```python
 >>> sum(p1*u1 for p1,u1 in zip(p,u[2]))
 3.0
 ```
@@ -127,7 +163,13 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+```
+--
+```python
 >>> eu
 [-10.0, -1.0, 3.0]
 ```
@@ -139,9 +181,18 @@ class: center, middle
 >>> u = ((50, -100),
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+```
+--
+```python
 >>> max(eu)
 3.0
+```
+--
+```python
 >>> eu.index(max(eu))
 2
 ```
@@ -153,8 +204,14 @@ class: center, middle
 >>> u = ((50, -100),  # Utility for each (action, state) pair
 ...      (25, -40),
 ...      (65, -90))
+```
+--
+```python
 >>> # Expected utility calculation
 ... eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+```
+--
+```python
 >>> # Find action which has greatest expected utility
 ... eu.index(max(eu))
 2
