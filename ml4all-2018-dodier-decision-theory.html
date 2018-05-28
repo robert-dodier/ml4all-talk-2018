@@ -173,19 +173,6 @@ class: center, middle
 >>> eu
 [-10.0, -1.0, 3.0]
 ```
----
-# Typical expected utility calculation
-
-```python
->>> p = (0.6, 0.4)
->>> u = ((50, -100),
-...      (25, -40),
-...      (65, -90))
-```
---
-```python
->>> eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
-```
 --
 ```python
 >>> max(eu)
