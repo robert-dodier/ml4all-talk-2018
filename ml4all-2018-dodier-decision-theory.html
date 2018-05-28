@@ -302,21 +302,28 @@ class: center, middle
 ```
 ---
 # More general decision problems
+
 --
  * What if there are more actions to consider?
+
 --
   * Additional rows in utility matrix `u`
+
 --
  * What if there are more than two discrete states?
+
 --
   * Additional columns in `u` and additional elements in probability tuple `p`
+
 --
  * What if states are continuous instead of discrete?
+
 --
   * Expected utility calculation is an integral instead of a summation
-  * Need to represent probability distribution as continuous function
+
 --
  * What if actions are continuous instead of discrete?
+
 --
   * Need to maximize expected utility over continuous variable
 
@@ -325,15 +332,17 @@ class: center, middle
 
  * Separate belief and preference in analysis of decision problem
 
- * Beliefs = outputs from ML models
+  * Beliefs = outputs from ML models
 
- * Preferences (utility function) express important business requirements
+  * Preferences = utility function
 
-  * Same for constraints on the set of possible actions
-
+--
  * Expected-utility decision theory: rank actions by expected utility, pick one that floats to top
 
- * This expected utility calculation often a simpler postprocessing step
+  * This expected utility calculation often a simpler postprocessing step
+
+--
+ * Preferences and constraints express important business requirements
 
 ---
 # Points of departure
@@ -350,10 +359,14 @@ class: center, middle
 
   * Assessments of preferences often evolve as more is learned about the business
 
-   * Formal statement of preferences is a great way to get input from stakeholders
+---
+# Points of departure
+
+  * Formal statement of preferences is a great way to get input from stakeholders
 
    * ... while insulating ML pipeline from changes
 
+--
   * But! Expected utility is the tail that wags the dog
 
    * Output of ML pipeline is determined by requirements of decision analysis
