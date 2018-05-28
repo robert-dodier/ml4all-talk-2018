@@ -97,11 +97,50 @@ class: center, middle
 ---
 # What is a decision theory?
 
+--
+ * A decision theory is a way to derive "best" actions from other considerations
+
+  * We'll derive actions from beliefs and preferences
+
+--
+ * We'll look at a normative theory -- i.e., what's the right way to go about it
+
+  * Descriptive theory is different -- humans only approximately rational
+
 ---
 # Expected-utility decision theory
 
+--
+ * Rational choice = choose action to have greatest expected utility
+
+  * Expected = averaged over possible outcomes, weighted by belief
+
+--
+ * Paraphrase: lottery ticket value is equal to its expected payoff
+
+  * Among tickets available, choose the one with greatest expected payoff
+
 ---
 # Putting expected utility into action
+
+--
+ * Need to identify the states over which beliefs are assessed
+
+  * These states will be the outputs of our ML model
+
+--
+ * Need to identify the set of possible actions
+
+  * Incorporate business constraints
+
+--
+ * Need to assess preferences for each (action, state) pair
+
+  * One can express preferences as costs, but I find benefits easier to think about
+
+  * ... with negative benefit = cost
+
+  * We can choose either formulation, just need to be consistent
 
 ---
 # Commonly-used ML models which output probabilities
@@ -127,7 +166,6 @@ class: center, middle
 --
  * Any regression model with additive noise
 
---
   * Model output gives conditional mean
 
   * Noise model gives conditional distribution around mean
@@ -140,8 +178,29 @@ class: center, middle
 ---
 # Non-probabilistic outputs: SVM
 
+ * Theoretical formulation SVM is essentially jumping to final decision
+
+ * ... going directly from input to a class determination without intervening steps
+
+ * People have tried to retrofit SVM with probability of class
+
+ * ... but this is pounding a square peg into a round hole
+
+ * If probabilities are needed, my advice is to use some other model
+
 ---
-# Not-exactly-probabilistic outputs: R RandomForest
+# Not-exactly-probabilistic outputs: R randomForest
+
+ * randomForest in R is a popular tree-structured classifier
+
+ * A large number of trees are generated from randomized inputs
+
+ * "Probability" outputs computed from voting among trees
+
+ * This isn't quite right; should assess probabilities by counting data, not models
+
+ * Something to watch out if you are trying to be careful
+
 ---
 # Typical expected utility calculation
 
