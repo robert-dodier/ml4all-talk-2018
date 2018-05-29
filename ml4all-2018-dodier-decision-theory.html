@@ -82,7 +82,9 @@ class: center, middle
  * Preferences can often be handled as a post-processing step
 
   * Handling preferences often much simpler computationally than beliefs!
---
+
+---
+# Elements of a decision problem
 
  * Preferences often express important business logic
 
@@ -121,6 +123,15 @@ class: center, middle
   * Among tickets available, choose the one with greatest expected payoff
 
 ---
+# Expected-utility decision theory
+
+ * Expected utility = `\(\sum_i p_i u_{j,i}\)` for each action `\(j\)`
+ 
+ * ... where `\(p_i\)` are probabilities over states `\(i\)`
+
+ * ... and `\(u_{j,i}\)` is utility of action `\(j\)` in state `\(i\)`
+
+---
 # Putting expected utility into action
 
 --
@@ -136,11 +147,7 @@ class: center, middle
 --
  * Need to assess preferences for each (action, state) pair
 
-  * One can express preferences as costs, but I find benefits easier to think about
-
-  * ... with negative benefit = cost
-
-  * We can choose either formulation, just need to be consistent
+  * One can express preferences as costs, but I find it easier to think about benefits
 
 ---
 # Commonly-used ML models which output probabilities
@@ -159,6 +166,9 @@ class: center, middle
 
 --
  * Tree-structured models
+
+--
+ * ... and many others
 
 ---
 # Models from which probabilities can be derived
@@ -184,8 +194,6 @@ class: center, middle
 
  * People have tried to retrofit SVM with probability of class
 
- * ... but this is pounding a square peg into a round hole
-
  * If probabilities are needed, my advice is to use some other model
 
 ---
@@ -199,7 +207,20 @@ class: center, middle
 
  * This isn't quite right; should assess probabilities by counting data, not models
 
- * Something to watch out if you are trying to be careful
+ * Should be straightforward to fix up output to get probabilities
+
+---
+# Typical expected utility calculation
+
+```python
+>>> p = (0.6, 0.4)    # Probability distribution over states
+```
+--
+```python
+>>> u = ((50, -100),  # Utility for each (action, state) pair
+...      (25, -40),
+...      (65, -90))
+```
 
 ---
 # Typical expected utility calculation
@@ -209,8 +230,26 @@ class: center, middle
 >>> u = ((50, -100),  # Utility for each (action, state) pair
 ...      (25, -40),
 ...      (65, -90))
+```
+
+ * Need to calculate `\(\sum_i p_i u_{j,i}\)` for each action `\(j\)` and find maximum element
+ 
+ * That's `\(p_0 u_{0,0} + p_1 u_{0,1}\)`, `\(p_0 u_{1,0} + p_1 u_{1,1}\)`, `\(p_0 u_{2,0} + p_1 u_{2,1}\)` in this problem
+
+---
+# Typical expected utility calculation
+
+```python
+>>> p = (0.6, 0.4)
+>>> u = ((50, -100),
+...      (25, -40),
+...      (65, -90))
+```
+```python
 >>> # Expected utility calculation
 ... eu = [sum(p1*u1 for p1,u1 in zip(p,uu)) for uu in u]
+```
+```python
 >>> # Find action which has greatest expected utility
 ... eu.index(max(eu))
 2
