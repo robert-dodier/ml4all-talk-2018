@@ -32,9 +32,13 @@ class: center, middle
 ---
 # Introduction
 
- * Your ML delivers tons and tons of predictions and estimates!
+ * Your ML pipeline delivers tons and tons of predictions and estimates!
+
+ * Shovel data into the hopper, turn the crank, results come out of the pipe
 
  * What to do with all those numbers?
+
+ * We must figure out what to do from the outputs we are getting; that is, we must make a decision.
 
 ---
 # Examples of decision problems
@@ -43,7 +47,7 @@ class: center, middle
 
 --
 
- * Given personal data and service history, what rebate or offer to give to someone to make them stay on service?
+ * Given personal data and service history, what rebate or offer to give to someone to make them continue subscription?
 
 --
 
@@ -64,13 +68,17 @@ class: center, middle
 
 --
 
- * Separation of beliefs and preferences greatly simplifies the problem
+ * Separation of beliefs and preferences often simplifies the problem
 
 --
 
   * Beliefs = what we infer from facts
 
   * Preferences = what we like, expressed as values, payoffs, or costs and benefits
+
+--
+
+ * Counterexample: beliefs and preferences not separated in reinforcement learning, e.g. Flappy Bird
 
 ---
 # Elements of a decision problem
@@ -113,7 +121,7 @@ class: center, middle
 # Expected-utility decision theory
 
 --
- * Rational choice = choose action to have greatest expected utility
+ * Rational choice: choose action to have greatest expected utility
 
   * Expected = averaged over possible outcomes, weighted by belief
 
@@ -163,9 +171,6 @@ class: center, middle
 
 --
  * Naive Bayes
-
---
- * Tree-structured models
 
 --
  * ... and many others
@@ -439,23 +444,21 @@ class: center, middle
 
   * This expected utility calculation often a simpler postprocessing step
 
---
- * Preferences and constraints express important business requirements
-
 ---
 # Points of departure
 
  * Try to separate beliefs from preferences in your business problem
 
-  * Bring business requirements into the picture via preferences
+  * Bring business requirements into the picture via utility function
 
   * ... and via constraints on actions
 
- * Be prepared to iterate on preferences and constraints
+--
+ * Be prepared to iterate on utility and constraints
 
   * These are often among the most malleable elements of the problem
 
-  * Assessments of preferences often evolve as more is learned about the business
+  * Make utility and constraints part of the configuration data
 
 ---
 # Points of departure
@@ -468,6 +471,8 @@ class: center, middle
   * But! Expected utility is the tail that wags the dog
 
    * Output of ML pipeline is determined by requirements of decision analysis
+
+   * Think first about the decision step, and work backwards from there.
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
